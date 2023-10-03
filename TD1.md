@@ -52,29 +52,74 @@ Validez les changements;
 Vous utiliserez le protocole `https` pour cela;
 Vérifiez avec le navigateur;
     ```bash
-    # Commandes pour publier les modifications
+    git remote add origin https://github.com/ensYeh/compl-prog-td1-sokhna00.git #already exists
+    git add .
+    git commit -m "Adding my changes"
+    git push
     ```
 1. Sur la forge, ajoutez un fichier de documentation `README.md`.
 Quelle syntaxe est utilisée pour ce fichier ?
-    > Répondre ici
+    > Pour le fichier de documentation README.md, la syntaxe la plus couramment utilisée est la syntaxe Markdown. Markdown est un langage de balisage léger qui permet de formater du texte de manière simple et lisible.
 1. Récupérez localement les modifications effectuées sur la forge.
     ```bash
-    # Répondre ici
+     git pull origin master
+
     ```
 1. Ajoutez les répertoires et fichiers issus de la compilation aux fichiers ignorés par `git` (cf. [`.gitignore` pour Java](https://github.com/github/gitignore/blob/main/Java.gitignore));
     ```bash
-    # Copier ici le contenu de `.gitignore`
+    # # Compiled class file
+*.class
+
+# Log file
+*.log
+
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+replay_pid*
     ```
 1. Retirez les fichiers de configuration de l'IDE du projet;
     ```bash
-    # Répondre ici
+      git rm --cached -r .idea/
+      git rm --cached *.iml
+
     ```
     Ajoutez-les aux fichiers ignorés par `git`.
     ```bash
-    # Copier ici les modifications de `.gitignore`
+    # Répertoire de configuration principal d'IntelliJ IDEA
+   .idea/
+   *.iml
     ```
-1. Configurez l'accès par clé publique/clé privée à la forge (cf. [Connecting to GitHub with SSH](https://docs.github.com/en/authentication/connecting-to-github-with-ssh)).
-    > Expliquez la procédure de façon synthétique
+   1. Configurez l'accès par clé publique/clé privée à la forge (cf. [Connecting to GitHub with SSH](https://docs.github.com/en/authentication/connecting-to-github-with-ssh)).
+    >    - Générer une paire de clés SSH (clé publique et clé privée) sur  l'ordinateur si ça n'existe pas deja. On peut utiliser la commande suivante dans le terminal pour générer une paire de clés : ssh-keygen -t ed25519 -C "dsokhnadiarra@ept.sn"
+
+    >    - Ajoutez la clé SSH à l'agent SSH pour qu'il puisse la gérer :  eval "$(ssh-agent -s)"
+           ssh-add ~/.ssh/id_ed25519
+
+    >    - Copiez la clé publique (~/.ssh/id_ed25519.pub) au presse-papiers en utilisant la commande cat ou un éditeur de texte.
+
+    >    -  Se connecter au compte GitHub. 
+
+    >    - Accédez aux paramètres du compte en cliquant sur la photo de profil en haut à droite, puis en sélectionnant "Settings" (Paramètres).
+    >    - Dans la colonne de gauche, on clique sur "SSH and GPG keys" (Clés SSH et GPG). 
+    >    - New SSH key
+    >    - Donner un nom a la clé
+    >    - Ajouter la clé ssh
+
 
 ## Partie II (à faire durant le TD) : compléter la classe `Fraction`
 Dans cet partie, vous compléterez les classes `Fraction` et `Main`.
@@ -86,22 +131,37 @@ Vous respecterez les consignes ci-dessous :
 
 1. Ajoutez les attributs représentants le numérateur et le dénominateur (nombres entiers).
     ```Java
-    // Déclaration des attributs
+    //     private int numerateur;   // Numérateur
+   //       private int denominateur; // Dénominateur
     ```
 1. Ajoutez les constructeurs (cf. [Constructor Declarations](https://docs.oracle.com/javase/specs/jls/se19/html/jls-8.html#jls-8.8)) suivants :
     * initialisation avec un numérateur et un dénominateur,
     * initialisation avec juste le numérateur (dénominateur égal à _1_),
     * initialisation sans argument (numérateur égal _0_ et dénominateur égal à _1_),
     ```Java
-    // Assertions pour tester les constructeurs (avec toString)
+    //  public String toString() {
+        // return numerateur + "/" + denominateur;
+     // }
     ```
 1. Ajoutez les fractions constantes ZERO (0, 1) et UN (1, 1) (cf. [Constants in Java](https://www.baeldung.com/java-constants-good-practices)),
     ```Java
-    // Déclaration des constantes
+      // Fraction constante ZERO
+    // public static final Fraction ZERO = new Fraction(0, 1);
+
+    // Fraction constante UN
+   //  public static final Fraction UN = new Fraction(1, 1);
     ```
 1. Ajoutez une méthode de consultation du numérateur et du dénominateur (par convention, en Java, une méthode retournant la valeur de l'attribut `anAttribute` est nommée `getAnAttribute`),
     ```Java
-    // Définition des getters
+       /* Méthode pour obtenir le numérateur
+    public int getNumerateur() {
+        return numerateur;
+    }
+
+    // Méthode pour obtenir le dénominateur
+    public int getDenominateur() {
+        return denominateur;
+    } */
     ```
 1. Ajoutez une méthode de consultation de la valeur sous la forme d'un nombre en virgule flottante (méthode `doubleValue()`) (cf. [`java.lang.Number`](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Number.html)),
    ```Java
